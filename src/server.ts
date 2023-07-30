@@ -3,7 +3,7 @@ import * as env from 'env-var'
 
 import { app, logger, shutdownHandlers, AppDataSource } from './loaders'
 
-const PORT = env.get('PORT').default('4000').asIntPositive()
+const PORT = env.get('PORT').default('3000').asIntPositive()
 
 const server = app.listen(PORT, () => {
   AppDataSource.initialize()
