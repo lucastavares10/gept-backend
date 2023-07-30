@@ -1,12 +1,7 @@
 import 'reflect-metadata'
 import * as env from 'env-var'
 
-import {
-  app,
-  logger,
-  shutdownHandlers,
-  AppDataSource,
-} from './loaders'
+import { app, logger, shutdownHandlers, AppDataSource } from './loaders'
 
 const PORT = env.get('PORT').default('4000').asIntPositive()
 

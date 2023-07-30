@@ -5,7 +5,8 @@
   "author": "Lucas Tavares",
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored && webpack --config webpack.config.js",
-    "start": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify --exit-child src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify --exit-child src/server.ts",
+    "start": "node dist/server.js",
     "test": "export NODE_ENV=test && jest --detectOpenHandles --watch",
     "migration:create": "npx typeorm migration:create ./src/infra/postgres/migrations/CreateDefaultUser",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/loaders/postgres.ts",
