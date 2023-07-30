@@ -4,26 +4,23 @@
 </h1>
 
 <p align="center">
-    <a alt="TypeScript">
+    <a alt="NPM">
         <img src="https://img.shields.io/badge/npm-v6+-red.svg" />
     </a>
     <a alt="NodeJs">
-        <img src="https://img.shields.io/badge/NodeJs-v12+-greenlight.svg" />
+        <img src="https://img.shields.io/badge/NodeJs-v16+-greenlight.svg" />
     </a>
     <a alt="TypeScript">
         <img src="https://img.shields.io/badge/TypeScript-v3.9-blue.svg" />
     </a>
-    <a alt="Flyway">
+    <a alt="TypeORM">
         <img src="https://img.shields.io/badge/TypeORM-v0.3-brown.svg">
     </a>
         <a alt="Jest">
         <img src="https://img.shields.io/badge/Jest-brown.svg">
     </a>
-    <a alt="Swagger-UI">
-        <img src="https://img.shields.io/badge/SwaggerUI-v4-green.svg">
-    </a>
-    <a alt="MongoDB">
-        <img src="https://img.shields.io/badge/MongoDB-v3.7-greendark.svg">
+    <a alt="PostgreSQL">
+        <img src="https://img.shields.io/badge/PostgreSQL-blue.svg">
     </a>
     <a alt="ExpressJs">
         <img src="https://img.shields.io/badge/ExpressJs-v4.17-greendark.svg">
