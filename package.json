@@ -1,6 +1,6 @@
 {
   "name": "gept-backend",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "server.js",
   "author": "Lucas Tavares",
   "scripts": {
