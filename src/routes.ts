@@ -9,10 +9,13 @@ import { findAllWorkerControllerFactory } from '@/main/factories/worker/findAllW
 import { findByIdWorkerControllerFactory } from '@/main/factories/worker/findByIdWorkerControllerFactory'
 import { updateWorkerControllerFactory } from '@/main/factories/worker/updateWorkerControllerFactory'
 import { authentication } from './presentation/middlewares/authentication/authMiddleware'
+import applicationOptions from './config/application'
 
 const router = Router()
 
-router.get('/health', (_, res: Response) => res.json({ status: 'Ok' }))
+router.get('/health', (_, res: Response) =>
+  res.json({ status: 'Ok', version: applicationOptions.version })
+)
 
 router.post('/login', (req: Request, res: Response) => {
   loginControllerFactory().handle(req, res)

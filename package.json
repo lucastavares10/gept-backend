@@ -1,6 +1,6 @@
 {
   "name": "gept-backend",
-  "version": "1.0.0",
+  "version": "1.0.10",
   "main": "server.js",
   "author": "Lucas Tavares",
   "scripts": {
@@ -8,8 +8,8 @@
     "start": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify --exit-child src/server.ts",
     "test": "export NODE_ENV=test && jest --detectOpenHandles --watch",
     "migration:create": "npx typeorm migration:create ./src/infra/postgres/migrations/CreateDefaultUser",
-    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/loaders/postgres.ts",
-    "migration:undo": "npx typeorm-ts-node-commonjs migration:revert -d ./src/loaders/postgres.ts"
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/loaders/postgres.ts",
+    "migration:undo": "typeorm-ts-node-commonjs migration:revert -d ./src/loaders/postgres.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
