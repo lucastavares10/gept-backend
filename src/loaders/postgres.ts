@@ -1,6 +1,5 @@
 import Migrations from '../infra/postgres/migrations'
 import Entities from '../infra/postgres/entities'
-import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 
 import dbConfig from '../config/postgres'
