@@ -14,3 +14,5 @@ db
 .postgresql
 
 server.prod.js
+
+.env
