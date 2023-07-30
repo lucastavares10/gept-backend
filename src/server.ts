@@ -13,7 +13,6 @@ const server = app.listen(PORT, () => {
     })
     .catch((error: any) => {
       logger.error(error)
-      console.log(error)
       process.exit(1)
     })
 })

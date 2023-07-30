@@ -1,10 +1,10 @@
-const path = require('path');
-const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
+const path = require('path')
+const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
 
-const plugins = [new webpack.HotModuleReplacementPlugin()];
+const plugins = [new webpack.HotModuleReplacementPlugin()]
 
-const entry = [path.resolve(path.join(__dirname, 'dist/server.js'))];
+const entry = [path.resolve(path.join(__dirname, 'dist/server.js'))]
 
 module.exports = {
   mode: 'production',
@@ -18,9 +18,9 @@ module.exports = {
     namedModules: false,
   },
   output: {
-    publicPath: './',
-    path: path.resolve(__dirname, './'),
-    filename: 'server.prod.js',
+    publicPath: './dist',
+    path: path.resolve(__dirname, './dist'),
+    filename: 'server.js',
     libraryTarget: 'commonjs2',
   },
   resolve: {
@@ -54,4 +54,4 @@ module.exports = {
     __filename: false,
     __dirname: false,
   },
-};
+}
