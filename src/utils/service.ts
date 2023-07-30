@@ -27,7 +27,7 @@ const responseStatusMap = new Map([
 ])
 
 const getResposeStatus = (statusCode: number): ResponseStatus => {
-  return responseStatusMap.get(statusCode) ?? ResponseStatus.BAD_REQUEST
+  return responseStatusMap.get(statusCode) || ResponseStatus.BAD_REQUEST
 }
 
 export { responseStatusMap, getResposeStatus }

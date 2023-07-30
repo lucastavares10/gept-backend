@@ -6,7 +6,10 @@
       "ES6"
     ],
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDirs": [
+      "./src",
+      "./tests"
+    ],
     "removeComments": true,
     "strict": true,
     "typeRoots": [
@@ -21,6 +24,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
+      "@/tests/*": [
+        "./tests/*"
+      ],
       "@/*": [
         "./src/*"
       ]
@@ -28,6 +34,7 @@
     "suppressImplicitAnyIndexErrors": true
   },
   "include": [
-    "src/**/*"
+    "src",
+    "tests"
   ]
 }

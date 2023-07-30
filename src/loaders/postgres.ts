@@ -1,3 +1,5 @@
+import Migrations from '../infra/postgres/migrations'
+import Entities from '../infra/postgres/entities'
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 
@@ -10,10 +12,9 @@ const AppDataSource = new DataSource({
   port: dbConfig.port,
   username: dbConfig.username,
   password: dbConfig.password,
-  entities: ["../infra/postgres/entities/*.ts"],
-  migrations: ["../infra/postgres/migrations/*.ts"],
+  entities: [...Object.values(Entities)],
+  migrations: [...Object.values(Migrations)],
   logging: true,
-  synchronize: true,
 })
 
 export default AppDataSource
