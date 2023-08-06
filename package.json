@@ -8,7 +8,7 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify --exit-child src/server.ts",
     "start": "node dist/server.js",
     "test": "export NODE_ENV=test && jest --detectOpenHandles --watch",
-    "migration:create": "npx typeorm migration:create ./src/infra/postgres/migrations/CreateDefaultUser",
+    "migration:create": "npx typeorm migration:create ./src/infra/postgres/migrations",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/loaders/postgres.ts",
     "migration:undo": "typeorm-ts-node-commonjs migration:revert -d ./src/loaders/postgres.ts"
   },

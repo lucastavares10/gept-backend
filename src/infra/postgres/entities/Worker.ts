@@ -1,5 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 import { v4 as uuid } from 'uuid'
+import { Project } from './Project'
 
 export enum AccessLevelTypes {
   ADMINISTRATOR = 'administrator',
@@ -68,4 +75,8 @@ export class Worker {
 
   @Column({ name: 'active', default: true })
   active!: boolean
+
+  @ManyToMany(() => Project)
+  @JoinTable()
+  projects!: Project[]
 }

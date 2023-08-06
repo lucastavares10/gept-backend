@@ -21,6 +21,7 @@ export namespace CreateWorker {
     complement: string
     postalCode: string
     active: boolean
+    projects: Array<string>
   }
   export type Result = WorkerModel | null
 }
