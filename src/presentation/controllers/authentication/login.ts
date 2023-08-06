@@ -50,7 +50,6 @@ export class LoginController implements Controller {
       return res.status(201).json({
         status: ResponseStatus.OK,
         data: {
-          ...loginData,
           token,
         },
       })
