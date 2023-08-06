@@ -33,15 +33,19 @@
 ## Índice
 
 1. [Descrição do projeto](#Descrição-projeto)
-2. [Tecnologias](#Tecnologias)
-3. [Design Patterns e Metodologias](#Design-patterns)
-4. [Metodologias](#Metodologias)
-5. [Instruções de uso](#Instruções-de-uso)
-6. [Documentação REST](#Documentação-REST)
+2. [Diagrama de entidade e relacionamento](#Diagrama-ERD)
+3. [Tecnologias](#Tecnologias)
+4. [Design Patterns e Metodologias](#Design-patterns)
+5. [Metodologias](#Metodologias)
+6. [Instruções de uso](#Instruções-de-uso)
 
 ## Descrição do projeto
 
 ...
+
+## Diagrama de entidade e relacionamento
+
+  <img src="./.github/images/GEPT - ERD.png" alt="Diagrama-ERD">
 
 ## Tecnologias
 
@@ -51,12 +55,10 @@ Principais ferramentas e tecnologias utilizadas no projeto:
 - **TypeScript** - Linguagem de programação
 - **NodeJS** - Interpretador JavaScript/TypeScript
 - **ExpressJS** - Framework para API em NodeJS
-- **MongoDB** - Banco de dados não relacional
+- **PostgreSQL** - Banco de dados relacional
 - **TypeORM** - ORM para Typescript
-- **SocketIO** - Protocolo de comunicação em tempo real
 - **Jest** - Framework para testes
 - **Docker** - Framework de conteinerização
-- **Swagger** - Documentação de API
 - **Yup** - Biblioteca de validação de esquemas
 - **ESLint** - Ferramenta de padronização de códigos
 - **Prettier** - Formatador de códigos
@@ -85,7 +87,6 @@ docker-compose up -d
 **3. Start usando npm**
 
 - Necessário uma conexão com o PostgreSQL, configurar no .env do projeto antes de executar
-
 
 ```bash
 npm install
