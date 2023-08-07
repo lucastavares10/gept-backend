@@ -1,4 +1,4 @@
-import { ProjectModel, FamilyModel } from '@/domain/models'
+import { ProjectModel, FamilyModel, PersonModel } from '@/domain/models'
 
 export interface CreateFamilyRepository {
   create(
@@ -15,6 +15,7 @@ export namespace CreateFamilyRepository {
     isRented: boolean
     rentPrice: number
     projects: Array<ProjectModel>
+    persons: Array<PersonModel>
   }
   export type Result = FamilyModel
 }

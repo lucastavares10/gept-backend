@@ -1,5 +1,4 @@
-import { FamilyModel } from '@/domain/models'
-
+import { FamilyModel, PersonModel } from '@/domain/models'
 export interface CreateFamily {
   execute(data: CreateFamily.Params): Promise<CreateFamily.Result>
 }
@@ -13,6 +12,7 @@ export namespace CreateFamily {
     isRented: boolean
     rentPrice: number
     projects: Array<string>
+    persons: Array<PersonModel>
   }
   export type Result = FamilyModel | null
 }

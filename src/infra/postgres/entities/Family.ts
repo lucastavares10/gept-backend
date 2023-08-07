@@ -1,11 +1,14 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm'
 import { v4 as uuid } from 'uuid'
+import { Person } from './Person'
 import { Project } from './Project'
 
 @Entity('family')
@@ -54,4 +57,9 @@ export class Family {
     },
   })
   projects!: Project[]
+
+  @OneToMany(() => Person, (person) => person.family, {
+    cascade: ['insert', 'update'],
+  })
+  persons!: Person[]
 }

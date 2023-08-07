@@ -1,4 +1,4 @@
-import { ProjectModel } from '@/domain/models'
+import { PersonModel, ProjectModel } from '@/domain/models'
 
 export interface UpdateFamilyRepository {
   update(
@@ -17,6 +17,7 @@ export namespace UpdateFamilyRepository {
       isRented: boolean
       rentPrice: number
       projects: Array<ProjectModel>
+      persons: Array<PersonModel>
     }
   }
   export type Result = boolean

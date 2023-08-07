@@ -1,3 +1,5 @@
+import { PersonModel } from '@/domain/models'
+
 export interface UpdateFamily {
   execute(data: UpdateFamily.Params): Promise<UpdateFamily.Result>
 }
@@ -12,6 +14,7 @@ export namespace UpdateFamily {
       complement: string
       isRented: boolean
       rentPrice: number
+      persons: Array<PersonModel>
       projects: Array<string>
     }
   }

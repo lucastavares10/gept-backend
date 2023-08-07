@@ -1,3 +1,4 @@
+import { FamilyModel } from '@/domain/models'
 import { CreateFamilyRepository } from '@/domain/repositories/family/createFamilyRepository'
 import { DeleteFamilyRepository } from '@/domain/repositories/family/deleteFamilyRepository'
 import { FindAllFamilyRepository } from '@/domain/repositories/family/findAllFamilyRepository'
@@ -5,6 +6,8 @@ import { FindByIdFamilyRepository } from '@/domain/repositories/family/findByIdF
 import { UpdateFamilyRepository } from '@/domain/repositories/family/updateFamilyRepository'
 import { AppDataSource } from '@/loaders'
 import { Family } from '../entities/Family'
+import { Person } from '../entities/Person'
+import { personEntityToModel, personModelToEntity } from './converters/person'
 import {
   projectEntityToModel,
   projectModelToEntity,
@@ -27,15 +30,23 @@ export class FamilyRepository
       return projectModelToEntity(project)
     })
 
+    const persons = params.persons.map((project) => {
+      return personModelToEntity(project)
+    })
+
     const family = await familyRepository.save({
       ...params,
-      projects: projects,
+      projects,
+      persons,
     })
 
     return {
       ...family,
       projects: family.projects.map((project) => {
         return projectEntityToModel(project)
+      }),
+      persons: family.persons.map((person) => {
+        return personEntityToModel(person)
       }),
     }
   }
@@ -46,6 +57,7 @@ export class FamilyRepository
     const families = await familyRepository.find({
       relations: {
         projects: true,
+        persons: true,
       },
     })
 
@@ -54,6 +66,9 @@ export class FamilyRepository
         ...family,
         projects: family.projects.map((project) => {
           return projectEntityToModel(project)
+        }),
+        persons: family.persons.map((person) => {
+          return personEntityToModel(person)
         }),
       }
     })
@@ -70,6 +85,7 @@ export class FamilyRepository
       },
       relations: {
         projects: true,
+        persons: true,
       },
     })
 
@@ -78,6 +94,9 @@ export class FamilyRepository
         ...family,
         projects: family.projects.map((project) => {
           return projectEntityToModel(project)
+        }),
+        persons: family.persons.map((person) => {
+          return personEntityToModel(person)
         }),
       }
     } else {
@@ -92,7 +111,7 @@ export class FamilyRepository
 
     const family = await familyRepository.findOne({
       where: { id: data.id },
-      relations: { projects: true },
+      relations: { projects: true, persons: true },
     })
 
     const familyUpdated = {
@@ -100,6 +119,9 @@ export class FamilyRepository
       ...data.newData,
       projects: data.newData.projects.map((project) => {
         return projectModelToEntity(project)
+      }),
+      persons: data.newData.persons.map((project) => {
+        return personModelToEntity(project)
       }),
     }
 

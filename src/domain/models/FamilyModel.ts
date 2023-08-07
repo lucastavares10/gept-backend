@@ -1,3 +1,4 @@
+import { PersonModel } from './PersonModel'
 import { ProjectModel } from './ProjectModel'
 
 export type FamilyModel = {
@@ -9,4 +10,5 @@ export type FamilyModel = {
   isRented: boolean
   rentPrice: number
   projects: Array<ProjectModel>
+  persons: Array<PersonModel>
 }

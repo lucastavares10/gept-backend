@@ -4,6 +4,7 @@ import { FindByIdFamilyRepository } from '@/domain/repositories/family/findByIdF
 import { NotFound } from '@/data/errors/notFound'
 import { familyValidationSchema } from '@/data/validations/familySchema'
 import { FindByIdsProjectRepository } from '@/domain/repositories/project/findByIdsProjectRepository'
+import { personValidationSchema } from '@/data/validations/personSchema'
 
 export class UpdateFamilyUseCase implements UpdateFamily {
   constructor(
@@ -17,7 +18,7 @@ export class UpdateFamilyUseCase implements UpdateFamily {
 
     const family = await this.findByIdFamilyRepository.findById(data.id)
 
-    if (!family) throw new NotFound('Trabalhador não encontrado')
+    if (!family) throw new NotFound('Família não encontrada')
 
     const projects = await this.findByIdsProject.findByIds(
       data.newData.projects
@@ -28,6 +29,10 @@ export class UpdateFamilyUseCase implements UpdateFamily {
 
       if (!projectFound)
         throw new NotFound(`Projeto com id ${projectId} não encontrado`)
+    })
+
+    data.newData.persons.forEach(async (person) => {
+      await personValidationSchema.validate(person)
     })
 
     const newFamily = {
