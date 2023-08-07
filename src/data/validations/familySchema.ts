@@ -7,4 +7,9 @@ export const familyValidationSchema = Yup.object().shape({
   complement: Yup.string(),
   isRented: Yup.boolean().required('Alugado? é obrigatório'),
   rentPrice: Yup.number().required('Aluguel é obrigatório'),
+  persons: Yup.array()
+    .defined()
+    .required()
+    .min(1, 'Pessoas da familía precisa ser preenchido')
+    .required('Pessoas da familía é obrigatório'),
 })
