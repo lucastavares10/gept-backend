@@ -19,7 +19,8 @@ export class WorkerRepository
     FindAllWorkerRepository,
     FindByIdWorkerRepository,
     UpdateWorkerRepository,
-    FindWorkerLoginRepository
+    FindWorkerLoginRepository,
+    DeleteWorkerRepository
 {
   async create(
     params: CreateWorkerRepository.Params

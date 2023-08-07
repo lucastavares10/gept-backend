@@ -19,6 +19,13 @@ import { findAllProjectControllerFactory } from '@/main/factories/project/findAl
 import { findByIdProjectControllerFactory } from '@/main/factories/project/findByIdProjectControllerFactory'
 import { updateProjectControllerFactory } from '@/main/factories/project/updateProjectControllerFactory'
 
+//Families
+import { createFamilyControllerFactory } from '@/main/factories/family/createFamilyControllerFactory'
+import { findAllFamilyControllerFactory } from '@/main/factories/family/findAllFamilyControllerFactory'
+import { findByIdFamilyControllerFactory } from '@/main/factories/family/findByIdFamilyControllerFactory'
+import { updateFamilyControllerFactory } from '@/main/factories/family/updateFamilyControllerFactory'
+import { deleteFamilyControllerFactory } from '@/main/factories/family/deleteFamilyControllerFactory'
+
 const router = Router()
 
 router.get('/health', (_, res: Response) =>
@@ -58,6 +65,23 @@ router.get('/project/:id', authentication, (req: Request, res: Response) => {
 })
 router.put('/project/:id', authentication, (req: Request, res: Response) => {
   updateProjectControllerFactory().handle(req, res)
+})
+
+//Families
+router.post('/family', authentication, (req: Request, res: Response) => {
+  createFamilyControllerFactory().handle(req, res)
+})
+router.get('/family', authentication, (req: Request, res: Response) => {
+  findAllFamilyControllerFactory().handle(req, res)
+})
+router.get('/family/:id', authentication, (req: Request, res: Response) => {
+  findByIdFamilyControllerFactory().handle(req, res)
+})
+router.put('/family/:id', authentication, (req: Request, res: Response) => {
+  updateFamilyControllerFactory().handle(req, res)
+})
+router.delete('/family/:id', authentication, (req: Request, res: Response) => {
+  deleteFamilyControllerFactory().handle(req, res)
 })
 
 export default router
