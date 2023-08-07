@@ -4,11 +4,13 @@ import { FindByIdWorkerRepository } from '@/domain/repositories/worker/findByIdW
 import { NotFound } from '@/data/errors/notFound'
 import { workerValidationSchema } from '@/data/validations/workerSchema'
 import { EncryptPassword } from '@/domain/usecases/security/encryptPassword'
+import { FindByIdsProjectRepository } from '@/domain/repositories/project/findByIdsProjectRepository'
 
 export class UpdateWorkerUseCase implements UpdateWorker {
   constructor(
     private readonly updateWorkerRepository: UpdateWorkerRepository,
     private readonly findByIdWorkerRepository: FindByIdWorkerRepository,
+    private readonly findByIdsProject: FindByIdsProjectRepository,
     private readonly encryptPassword: EncryptPassword
   ) {}
 
@@ -19,6 +21,17 @@ export class UpdateWorkerUseCase implements UpdateWorker {
 
     if (!worker) throw new NotFound('Trabalhador não encontrado')
 
+    const projects = await this.findByIdsProject.findByIds(
+      data.newData.projects
+    )
+
+    data.newData.projects.forEach((projectId) => {
+      const projectFound = projects.find((project) => project.id === projectId)
+
+      if (!projectFound)
+        throw new NotFound(`Projeto com id ${projectId} não encontrado`)
+    })
+
     const newWorker = {
       ...worker,
       ...data.newData,
@@ -28,6 +41,7 @@ export class UpdateWorkerUseCase implements UpdateWorker {
       id: data.id,
       newData: {
         ...newWorker,
+        projects: projects,
         password: await this.encryptPassword.execute(newWorker.password),
       },
     })

@@ -11,6 +11,7 @@ import { createWorkerControllerFactory } from '@/main/factories/worker/createWor
 import { findAllWorkerControllerFactory } from '@/main/factories/worker/findAllWorkerControllerFactory'
 import { findByIdWorkerControllerFactory } from '@/main/factories/worker/findByIdWorkerControllerFactory'
 import { updateWorkerControllerFactory } from '@/main/factories/worker/updateWorkerControllerFactory'
+import { deleteWorkerControllerFactory } from '@/main/factories/worker/deleteWorkerControllerFactory'
 
 //Projects
 import { createProjectControllerFactory } from '@/main/factories/project/createProjectControllerFactory'
@@ -40,6 +41,9 @@ router.get('/worker/:id', authentication, (req: Request, res: Response) => {
 })
 router.put('/worker/:id', authentication, (req: Request, res: Response) => {
   updateWorkerControllerFactory().handle(req, res)
+})
+router.delete('/worker/:id', authentication, (req: Request, res: Response) => {
+  deleteWorkerControllerFactory().handle(req, res)
 })
 
 //Projects

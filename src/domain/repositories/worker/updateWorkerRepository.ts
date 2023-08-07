@@ -1,3 +1,5 @@
+import { ProjectModel } from '@/domain/models'
+
 export interface UpdateWorkerRepository {
   update(
     params: UpdateWorkerRepository.Params
@@ -23,6 +25,7 @@ export namespace UpdateWorkerRepository {
       complement: string
       postalCode: string
       active: boolean
+      projects: Array<ProjectModel>
     }
   }
   export type Result = boolean

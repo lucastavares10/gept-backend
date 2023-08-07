@@ -1,3 +1,5 @@
+import { ProjectModel } from './ProjectModel'
+
 export type WorkerModel = {
   id?: string
   name: string
@@ -15,4 +17,5 @@ export type WorkerModel = {
   complement: string
   postalCode: string
   active: boolean
+  projects: Array<ProjectModel>
 }

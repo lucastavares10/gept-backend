@@ -77,6 +77,16 @@ export class Worker {
   active!: boolean
 
   @ManyToMany(() => Project)
-  @JoinTable()
+  @JoinTable({
+    name: 'project_worker',
+    joinColumn: {
+      name: 'worker_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'project_id',
+      referencedColumnName: 'id',
+    },
+  })
   projects!: Project[]
 }

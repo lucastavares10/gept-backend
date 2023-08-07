@@ -6,5 +6,12 @@ export interface FindWorkerLoginRepository {
 
 export namespace FindWorkerLoginRepository {
   export type Params = string
-  export type Result = WorkerModel | null
+  export type Result = {
+    id: string
+    name: string
+    email: string
+    password: string
+    accessLevel: string
+    position: string
+  } | null
 }

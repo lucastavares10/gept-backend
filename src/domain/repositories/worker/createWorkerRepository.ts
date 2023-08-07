@@ -1,4 +1,4 @@
-import { WorkerModel } from '@/domain/models'
+import { ProjectModel, WorkerModel } from '@/domain/models'
 
 export interface CreateWorkerRepository {
   create(
@@ -23,6 +23,7 @@ export namespace CreateWorkerRepository {
     complement: string
     postalCode: string
     active: boolean
+    projects: Array<ProjectModel>
   }
   export type Result = WorkerModel
 }

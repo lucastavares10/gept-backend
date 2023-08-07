@@ -5,7 +5,7 @@ import { AlreadyInUseError } from '@/data/errors/alreadyInUseError'
 import { workerValidationSchema } from '@/data/validations/workerSchema'
 import { EncryptPassword } from '@/domain/usecases/security/encryptPassword'
 import { FindByIdsProjectRepository } from '@/domain/repositories/project/findByIdsProjectRepository'
-import { ProjectModel } from '@/domain/models'
+import { NotFound } from '@/data/errors/notFound'
 
 export class CreateWorkerUseCase implements CreateWorker {
   constructor(
@@ -27,9 +27,17 @@ export class CreateWorkerUseCase implements CreateWorker {
 
     const projects = await this.findByIdsProject.findByIds(data.projects)
 
+    data.projects.forEach((projectId) => {
+      const projectFound = projects.find((project) => project.id === projectId)
+
+      if (!projectFound)
+        throw new NotFound(`Projeto com id ${projectId} não encontrado`)
+    })
+
     return this.createWorkerRepository.create({
       ...data,
       password: await this.encryptPassword.execute(data.password),
+      projects: projects,
       active: true,
     })
   }

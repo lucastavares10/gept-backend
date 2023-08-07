@@ -21,6 +21,7 @@ export namespace UpdateWorker {
       complement: string
       postalCode: string
       active: boolean
+      projects: Array<string>
     }
   }
   export type Result = Boolean

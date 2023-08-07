@@ -3,8 +3,18 @@ import { v4 as uuid } from 'uuid'
 
 @Entity('project')
 export class Project {
-  constructor() {
-    this.id = uuid()
+  constructor(
+    id?: string,
+    name?: string,
+    description?: string,
+    active?: boolean,
+    daysOfWork?: string
+  ) {
+    this.id = id || uuid()
+    this.name = name!
+    this.description = description!
+    this.active = active!
+    this.daysOfWork = daysOfWork!
   }
 
   @PrimaryGeneratedColumn('uuid')
