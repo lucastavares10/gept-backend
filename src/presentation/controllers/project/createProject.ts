@@ -19,7 +19,7 @@ export class CreateProjectController implements Controller {
         ...req.body,
       })
       return res.status(201).json({
-        status: ResponseStatus.OK,
+        status: ResponseStatus.CREATED,
         data: newProject,
       })
     } catch (error) {

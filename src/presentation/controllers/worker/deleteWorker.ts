@@ -18,7 +18,7 @@ export class DeleteWorkerController implements Controller {
 
       await this.deleteWorkerRepository.delete(id)
 
-      return res.status(201).json({
+      return res.status(200).json({
         status: ResponseStatus.OK,
       })
     } catch (error) {

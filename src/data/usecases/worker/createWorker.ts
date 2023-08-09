@@ -23,7 +23,7 @@ export class CreateWorkerUseCase implements CreateWorker {
     )
 
     if (alreadyInUse?.email === data.email)
-      throw new AlreadyInUseError('Email já está sendo utilizado!')
+      throw new AlreadyInUseError('Email já está sendo utilizado.')
 
     const projects = await this.findByIdsProject.findByIds(data.projects)
 
@@ -31,7 +31,7 @@ export class CreateWorkerUseCase implements CreateWorker {
       const projectFound = projects.find((project) => project.id === projectId)
 
       if (!projectFound)
-        throw new NotFound(`Projeto com id ${projectId} não encontrado`)
+        throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
     })
 
     return this.createWorkerRepository.create({

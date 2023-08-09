@@ -18,7 +18,7 @@ export class FindByIdWorkerController implements Controller {
       const id = req.params.id
 
       const worker = await this.findByIdWorkerUseCase.execute(id)
-      return res.status(201).json({
+      return res.status(200).json({
         status: ResponseStatus.OK,
         data: worker,
       })

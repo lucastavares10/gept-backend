@@ -19,7 +19,7 @@ export class CreateFamilyController implements Controller {
         ...req.body,
       })
       return res.status(201).json({
-        status: ResponseStatus.OK,
+        status: ResponseStatus.CREATED,
         data: newFamily,
       })
     } catch (error) {

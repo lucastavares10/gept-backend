@@ -19,7 +19,7 @@ export class UpdateWorkerUseCase implements UpdateWorker {
 
     const worker = await this.findByIdWorkerRepository.findById(data.id)
 
-    if (!worker) throw new NotFound('Trabalhador não encontrado')
+    if (!worker) throw new NotFound('Trabalhador não encontrado.')
 
     const projects = await this.findByIdsProject.findByIds(
       data.newData.projects
@@ -29,7 +29,7 @@ export class UpdateWorkerUseCase implements UpdateWorker {
       const projectFound = projects.find((project) => project.id === projectId)
 
       if (!projectFound)
-        throw new NotFound(`Projeto com id ${projectId} não encontrado`)
+        throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
     })
 
     const newWorker = {

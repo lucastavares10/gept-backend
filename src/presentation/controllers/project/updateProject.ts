@@ -19,7 +19,7 @@ export class UpdateProjectController implements Controller {
         id: req.params.id,
         newData: { ...req.body },
       })
-      return res.status(201).json({
+      return res.status(200).json({
         status: ResponseStatus.OK,
         data: updatedProject,
       })

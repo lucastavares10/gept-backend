@@ -24,18 +24,19 @@ export class LoginController implements Controller {
       const { email, password } = req.body
 
       if (!email || !password)
-        throw new ParamRequired('email e senha são obrigatórios')
+        throw new ParamRequired('Email e senha são obrigatórios.')
 
       const worker = await this.findWorkerLoginRepository.findWorkerLogin(email)
 
-      if (!worker || !worker.id) throw new NotFound('email ou senha incorretos')
+      if (!worker || !worker.id)
+        throw new NotFound('Email ou senha incorretos.')
 
       const isValidPassword = await this.validatePassword.execute({
         password: password,
         hash: worker.password,
       })
 
-      if (!isValidPassword) throw new NotFound('email ou senha incorretos')
+      if (!isValidPassword) throw new NotFound('Email ou senha incorretos.')
 
       const loginData = {
         id: worker.id,
@@ -47,7 +48,7 @@ export class LoginController implements Controller {
 
       const token = await this.createToken.execute(loginData)
 
-      return res.status(201).json({
+      return res.status(200).json({
         status: ResponseStatus.OK,
         data: {
           token,

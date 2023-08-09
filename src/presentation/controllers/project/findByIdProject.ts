@@ -17,7 +17,7 @@ export class FindByIdProjectController implements Controller {
       const id = req.params.id
 
       const project = await this.findByIdProjectUseCase.execute(id)
-      return res.status(201).json({
+      return res.status(200).json({
         status: ResponseStatus.OK,
         data: project,
       })

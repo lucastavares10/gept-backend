@@ -15,7 +15,7 @@ export class FindAllFamilyController implements Controller {
   ): Promise<Response<IResponse>> {
     try {
       const families = await this.findAllFamilyUseCase.execute()
-      return res.status(201).json({
+      return res.status(200).json({
         status: ResponseStatus.OK,
         data: families,
       })

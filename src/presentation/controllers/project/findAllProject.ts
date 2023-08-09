@@ -15,7 +15,7 @@ export class FindAllProjectController implements Controller {
   ): Promise<Response<IResponse>> {
     try {
       const projects = await this.findAllProjectUseCase.execute()
-      return res.status(201).json({
+      return res.status(200).json({
         status: ResponseStatus.OK,
         data: projects,
       })

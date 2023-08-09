@@ -18,7 +18,7 @@ export class UpdateFamilyUseCase implements UpdateFamily {
 
     const family = await this.findByIdFamilyRepository.findById(data.id)
 
-    if (!family) throw new NotFound('Família não encontrada')
+    if (!family) throw new NotFound('Família não encontrada.')
 
     const projects = await this.findByIdsProject.findByIds(
       data.newData.projects
@@ -28,7 +28,7 @@ export class UpdateFamilyUseCase implements UpdateFamily {
       const projectFound = projects.find((project) => project.id === projectId)
 
       if (!projectFound)
-        throw new NotFound(`Projeto com id ${projectId} não encontrado`)
+        throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
     })
 
     data.newData.persons.forEach(async (person) => {

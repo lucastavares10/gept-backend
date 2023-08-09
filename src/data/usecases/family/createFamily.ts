@@ -20,7 +20,7 @@ export class CreateFamilyUseCase implements CreateFamily {
       const projectFound = projects.find((project) => project.id === projectId)
 
       if (!projectFound)
-        throw new NotFound(`Projeto com id ${projectId} não encontrado`)
+        throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
     })
 
     data.persons.forEach(async (person) => {

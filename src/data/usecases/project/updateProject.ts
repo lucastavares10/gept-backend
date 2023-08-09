@@ -15,7 +15,7 @@ export class UpdateProjectUseCase implements UpdateProject {
 
     const project = await this.findByIdProjectRepository.findById(data.id)
 
-    if (!project) throw new NotFound('Projeto não encontrado')
+    if (!project) throw new NotFound('Projeto não encontrado.')
 
     const newProject = {
       ...project,

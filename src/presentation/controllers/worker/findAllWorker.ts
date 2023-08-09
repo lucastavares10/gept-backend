@@ -15,7 +15,7 @@ export class FindAllWorkerController implements Controller {
   ): Promise<Response<IResponse>> {
     try {
       const workers = await this.findAllWorkerUseCase.execute()
-      return res.status(201).json({
+      return res.status(200).json({
         status: ResponseStatus.OK,
         data: workers,
       })
