@@ -9,7 +9,7 @@ export interface CreateFamilyRepository {
 export namespace CreateFamilyRepository {
   export type Params = {
     street: string
-    number: number
+    number: string
     neighborhood: string
     complement: string
     isRented: boolean

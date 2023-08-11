@@ -24,7 +24,7 @@ export class Family {
   street!: string
 
   @Column({ name: 'number' })
-  number!: number
+  number!: string
 
   @Column({ name: 'neighborhood' })
   neighborhood!: string

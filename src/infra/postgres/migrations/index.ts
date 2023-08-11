@@ -5,6 +5,8 @@ import { CreateProjectWorkerTable1691334617048 } from './1691334617048-CreatePro
 import { CreateFamilyTable1691375975514 } from './1691375975514-CreateFamilyTable'
 import { CreateProjectFamilyTable1691375990001 } from './1691375990001-CreateProjectFamilyTable'
 import { CreatePersonTable1691379089707 } from './1691379089707-CreatePersonTable'
+import { AlterColumnWorkerNumber1691716527739 } from './1691716527739-AlterColumnWorkerNumber'
+import { AlterColumnFamilyNumber1691717020537 } from './1691717020537-AlterColumnFamilyNumber'
 
 export default {
   CreateWorkerTable1690727559455,
@@ -14,4 +16,6 @@ export default {
   CreateFamilyTable1691375975514,
   CreateProjectFamilyTable1691375990001,
   CreatePersonTable1691379089707,
+  AlterColumnWorkerNumber1691716527739,
+  AlterColumnFamilyNumber1691717020537,
 }

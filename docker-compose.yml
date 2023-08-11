@@ -7,8 +7,8 @@ services:
       - '5432:5432'
     container_name: postgres-db
     environment:
+      - POSTGRES_DB=gept_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
       - ./db/:/data/db
-

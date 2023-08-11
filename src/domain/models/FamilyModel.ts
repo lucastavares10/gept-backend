@@ -4,7 +4,7 @@ import { ProjectModel } from './ProjectModel'
 export type FamilyModel = {
   id?: string
   street: string
-  number: number
+  number: string
   neighborhood: string
   complement: string
   isRented: boolean

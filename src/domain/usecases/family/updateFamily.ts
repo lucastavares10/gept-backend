@@ -9,7 +9,7 @@ export namespace UpdateFamily {
     id: string
     newData: {
       street: string
-      number: number
+      number: string
       neighborhood: string
       complement: string
       isRented: boolean

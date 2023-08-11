@@ -20,7 +20,7 @@ export const workerValidationSchema = Yup.object().shape({
   phone: Yup.string().required('Telefone é obrigatório'),
   isWhatsApp: Yup.boolean().required('isWhatsApp é obrigatório'),
   street: Yup.string().required('Rua é obrigatório'),
-  number: Yup.number().required('Número é obrigatório'),
+  number: Yup.string().required('Número é obrigatório'),
   neighborhood: Yup.string().required('Bairro é obrigatório'),
   city: Yup.string().required('Cidade é obrigatório'),
   postalCode: Yup.string().required('CEP é obrigatório').length(8),

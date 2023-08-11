@@ -10,7 +10,7 @@ export type WorkerModel = {
   phone: string
   isWhatsApp: boolean
   street: string
-  number: number
+  number: string
   birthdate: Date
   neighborhood: string
   city: string

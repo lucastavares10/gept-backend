@@ -6,7 +6,7 @@ export interface CreateFamily {
 export namespace CreateFamily {
   export type Params = {
     street: string
-    number: number
+    number: string
     neighborhood: string
     complement: string
     isRented: boolean

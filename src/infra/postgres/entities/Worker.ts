@@ -56,7 +56,7 @@ export class Worker {
   street!: string
 
   @Column({ name: 'number' })
-  number!: number
+  number!: string
 
   @Column({ name: 'birthdate' })
   birthdate!: Date
