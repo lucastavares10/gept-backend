@@ -3,8 +3,6 @@ import { CreateFamilyRepository } from '@/domain/repositories/family/createFamil
 import { familyValidationSchema } from '@/data/validations/familySchema'
 import { FindByIdsProjectRepository } from '@/domain/repositories/project/findByIdsProjectRepository'
 import { NotFound } from '@/data/errors/notFound'
-import { personValidationSchema } from '@/data/validations/personSchema'
-
 export class CreateFamilyUseCase implements CreateFamily {
   constructor(
     private readonly createFamilyRepository: CreateFamilyRepository,
@@ -21,10 +19,6 @@ export class CreateFamilyUseCase implements CreateFamily {
 
       if (!projectFound)
         throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
-    })
-
-    data.persons.forEach(async (person) => {
-      await personValidationSchema.validate(person)
     })
 
     return this.createFamilyRepository.create({

@@ -2,7 +2,7 @@ import { UpdateProject } from '@/domain/usecases/project/updateProject'
 import { UpdateProjectRepository } from '@/domain/repositories/project/updateProjectRepository'
 import { FindByIdProjectRepository } from '@/domain/repositories/project/findByIdProjectRepository'
 import { NotFound } from '@/data/errors/notFound'
-import { projectValidationSchema } from '@/data/validations/projectSchema'
+import { updateProjectValidationSchema } from '@/data/validations/update/projectSchema'
 
 export class UpdateProjectUseCase implements UpdateProject {
   constructor(
@@ -11,7 +11,7 @@ export class UpdateProjectUseCase implements UpdateProject {
   ) {}
 
   async execute(data: UpdateProject.Params): Promise<UpdateProject.Result> {
-    await projectValidationSchema.validate(data.newData)
+    await updateProjectValidationSchema.validate(data.newData)
 
     const project = await this.findByIdProjectRepository.findById(data.id)
 

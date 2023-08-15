@@ -2,9 +2,8 @@ import { UpdateFamily } from '@/domain/usecases/family/updateFamily'
 import { UpdateFamilyRepository } from '@/domain/repositories/family/updateFamilyRepository'
 import { FindByIdFamilyRepository } from '@/domain/repositories/family/findByIdFamilyRepository'
 import { NotFound } from '@/data/errors/notFound'
-import { familyValidationSchema } from '@/data/validations/familySchema'
 import { FindByIdsProjectRepository } from '@/domain/repositories/project/findByIdsProjectRepository'
-import { personValidationSchema } from '@/data/validations/personSchema'
+import { updateFamilyValidationSchema } from '@/data/validations/update/familySchema'
 
 export class UpdateFamilyUseCase implements UpdateFamily {
   constructor(
@@ -14,7 +13,7 @@ export class UpdateFamilyUseCase implements UpdateFamily {
   ) {}
 
   async execute(data: UpdateFamily.Params): Promise<UpdateFamily.Result> {
-    await familyValidationSchema.validate(data.newData)
+    await updateFamilyValidationSchema.validate(data.newData)
 
     const family = await this.findByIdFamilyRepository.findById(data.id)
 
@@ -24,16 +23,16 @@ export class UpdateFamilyUseCase implements UpdateFamily {
       data.newData.projects
     )
 
-    data.newData.projects.forEach((projectId) => {
-      const projectFound = projects.find((project) => project.id === projectId)
+    if (projects) {
+      data.newData.projects.forEach((projectId) => {
+        const projectFound = projects.find(
+          (project) => project.id === projectId
+        )
 
-      if (!projectFound)
-        throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
-    })
-
-    data.newData.persons.forEach(async (person) => {
-      await personValidationSchema.validate(person)
-    })
+        if (!projectFound)
+          throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
+      })
+    }
 
     const newFamily = {
       ...family,
@@ -44,7 +43,7 @@ export class UpdateFamilyUseCase implements UpdateFamily {
       id: data.id,
       newData: {
         ...newFamily,
-        projects: projects,
+        projects: projects || [],
       },
     })
   }

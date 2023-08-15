@@ -2,9 +2,9 @@ import { UpdateWorker } from '@/domain/usecases/worker/updateWorker'
 import { UpdateWorkerRepository } from '@/domain/repositories/worker/updateWorkerRepository'
 import { FindByIdWorkerRepository } from '@/domain/repositories/worker/findByIdWorkerRepository'
 import { NotFound } from '@/data/errors/notFound'
-import { workerValidationSchema } from '@/data/validations/workerSchema'
 import { EncryptPassword } from '@/domain/usecases/security/encryptPassword'
 import { FindByIdsProjectRepository } from '@/domain/repositories/project/findByIdsProjectRepository'
+import { updateWorkerValidationSchema } from '@/data/validations/update/workerSchema'
 
 export class UpdateWorkerUseCase implements UpdateWorker {
   constructor(
@@ -15,7 +15,7 @@ export class UpdateWorkerUseCase implements UpdateWorker {
   ) {}
 
   async execute(data: UpdateWorker.Params): Promise<UpdateWorker.Result> {
-    await workerValidationSchema.validate(data.newData)
+    await updateWorkerValidationSchema.validate(data.newData)
 
     const worker = await this.findByIdWorkerRepository.findById(data.id)
 
@@ -25,24 +25,33 @@ export class UpdateWorkerUseCase implements UpdateWorker {
       data.newData.projects
     )
 
-    data.newData.projects.forEach((projectId) => {
-      const projectFound = projects.find((project) => project.id === projectId)
+    if (projects) {
+      data.newData.projects.forEach((projectId) => {
+        const projectFound = projects.find(
+          (project) => project.id === projectId
+        )
 
-      if (!projectFound)
-        throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
-    })
+        if (!projectFound)
+          throw new NotFound(`Projeto com id ${projectId} não encontrado.`)
+      })
+    }
 
     const newWorker = {
       ...worker,
       ...data.newData,
     }
 
+    if (data.newData.password) {
+      newWorker.password = await this.encryptPassword.execute(
+        newWorker.password
+      )
+    }
+
     return this.updateWorkerRepository.update({
       id: data.id,
       newData: {
         ...newWorker,
-        projects: projects,
-        password: await this.encryptPassword.execute(newWorker.password),
+        projects: projects || [],
       },
     })
   }

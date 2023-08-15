@@ -7,8 +7,6 @@ export class ValidatePasswordUseCase implements ValidatePassword {
   async execute(
     params: ValidatePassword.Params
   ): Promise<ValidatePassword.Result> {
-    console.log(params.password, params.hash)
-
     return bcrypt.compare(params.password, params.hash)
   }
 }

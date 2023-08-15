@@ -6,5 +6,5 @@ export interface FindByIdsProjectRepository {
 
 export namespace FindByIdsProjectRepository {
   export type Params = Array<string>
-  export type Result = Array<ProjectModel>
+  export type Result = Array<ProjectModel> | null
 }

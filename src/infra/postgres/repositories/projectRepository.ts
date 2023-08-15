@@ -1,5 +1,6 @@
 import { CountProjectRepository } from '@/domain/repositories/project/countProjectRepository'
 import { CreateProjectRepository } from '@/domain/repositories/project/createProjectRepository'
+import { DeleteProjectRepository } from '@/domain/repositories/project/deleteProjectRepository'
 import { FindAllProjectRepository } from '@/domain/repositories/project/findAllProjectRepository'
 import { FindByIdProjectRepository } from '@/domain/repositories/project/findByIdProjectRepository'
 import { FindByIdsProjectRepository } from '@/domain/repositories/project/findByIdsProjectRepository'
@@ -15,7 +16,8 @@ export class ProjectRepository
     FindByIdProjectRepository,
     FindByIdsProjectRepository,
     UpdateProjectRepository,
-    CountProjectRepository
+    CountProjectRepository,
+    DeleteProjectRepository
 {
   async create(
     params: CreateProjectRepository.Params
@@ -77,14 +79,20 @@ export class ProjectRepository
   ): Promise<FindByIdsProjectRepository.Result> {
     const projectRepository = AppDataSource.getRepository(Project)
 
-    const projects = await projectRepository.findBy({ id: In(ids) })
+    if (ids && Array.isArray(ids)) {
+      const data = await projectRepository.findBy({ id: In(ids) })
 
-    return projects.map((project) => {
-      return {
-        ...project,
-        daysOfWork: JSON.parse(project.daysOfWork) as Array<string>,
-      }
-    })
+      const projects = data?.map((project) => {
+        return {
+          ...project,
+          daysOfWork: JSON.parse(project.daysOfWork) as Array<string>,
+        }
+      })
+
+      return projects || null
+    }
+
+    return null
   }
 
   async update(
@@ -95,6 +103,16 @@ export class ProjectRepository
       ...data.newData,
       daysOfWork: JSON.stringify(data.newData.daysOfWork),
     })
+    return true
+  }
+
+  async delete(
+    id: DeleteProjectRepository.Params
+  ): Promise<DeleteProjectRepository.Result> {
+    const projectRepository = AppDataSource.getRepository(Project)
+
+    await projectRepository.delete(id)
+
     return true
   }
 

@@ -10,8 +10,8 @@ const daysOfWeek = [
   'sunday',
 ]
 
-export const projectValidationSchema = Yup.object().shape({
-  name: Yup.string().required('Nome é obrigatório'),
+export const updateProjectValidationSchema = Yup.object().shape({
+  name: Yup.string(),
   description: Yup.string(),
   daysOfWork: Yup.array()
     .of(
@@ -24,8 +24,5 @@ export const projectValidationSchema = Yup.object().shape({
         }
       )
     )
-    .defined()
-    .required()
-    .min(1, 'Dias de trabalho precisa ser preenchido')
-    .required('Dias de trabalho é obrigatório'),
+    .min(1, 'Dias de trabalho precisa ser preenchido'),
 })
