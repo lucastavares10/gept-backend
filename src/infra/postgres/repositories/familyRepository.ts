@@ -1,4 +1,5 @@
 import { FamilyModel } from '@/domain/models'
+import { CountFamilyRepository } from '@/domain/repositories/family/countFamilyRepository'
 import { CreateFamilyRepository } from '@/domain/repositories/family/createFamilyRepository'
 import { DeleteFamilyRepository } from '@/domain/repositories/family/deleteFamilyRepository'
 import { FindAllFamilyRepository } from '@/domain/repositories/family/findAllFamilyRepository'
@@ -19,7 +20,8 @@ export class FamilyRepository
     FindAllFamilyRepository,
     FindByIdFamilyRepository,
     UpdateFamilyRepository,
-    DeleteFamilyRepository
+    DeleteFamilyRepository,
+    CountFamilyRepository
 {
   async create(
     params: CreateFamilyRepository.Params
@@ -51,17 +53,23 @@ export class FamilyRepository
     }
   }
 
-  async findAll(): Promise<FindAllFamilyRepository.Result> {
+  async findAll(
+    params: FindAllFamilyRepository.Params
+  ): Promise<FindAllFamilyRepository.Result> {
     const familyRepository = AppDataSource.getRepository(Family)
 
-    const families = await familyRepository.find({
+    const { page = 1, perPage = 10 } = params
+
+    const [data, total] = await familyRepository.findAndCount({
       relations: {
         projects: true,
         persons: true,
       },
+      take: perPage,
+      skip: perPage * page - perPage,
     })
 
-    return families.map((family) => {
+    const families = data.map((family) => {
       return {
         ...family,
         projects: family.projects.map((project) => {
@@ -72,6 +80,8 @@ export class FamilyRepository
         }),
       }
     })
+
+    return { families, total }
   }
 
   async findById(
@@ -138,5 +148,11 @@ export class FamilyRepository
     await familyRepository.delete(id)
 
     return true
+  }
+
+  async count(): Promise<CountFamilyRepository.Result> {
+    const familyRepository = AppDataSource.getRepository(Family)
+
+    return familyRepository.count()
   }
 }

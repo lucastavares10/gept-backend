@@ -14,10 +14,16 @@ export class FindAllWorkerController implements Controller {
     res: Response<IResponse>
   ): Promise<Response<IResponse>> {
     try {
-      const workers = await this.findAllWorkerUseCase.execute()
+      const { page, perpage } = req.headers
+
+      const result = await this.findAllWorkerUseCase.execute({
+        page: !Number.isNaN(page) ? Number(page) : 1,
+        perPage: !Number.isNaN(perpage) ? Number(perpage) : 10,
+      })
+
       return res.status(200).json({
         status: ResponseStatus.OK,
-        data: workers,
+        data: result,
       })
     } catch (error) {
       if (error instanceof ValidationError) {

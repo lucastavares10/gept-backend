@@ -1,3 +1,4 @@
+import { CountProjectRepository } from '@/domain/repositories/project/countProjectRepository'
 import { CreateProjectRepository } from '@/domain/repositories/project/createProjectRepository'
 import { FindAllProjectRepository } from '@/domain/repositories/project/findAllProjectRepository'
 import { FindByIdProjectRepository } from '@/domain/repositories/project/findByIdProjectRepository'
@@ -13,7 +14,8 @@ export class ProjectRepository
     FindAllProjectRepository,
     FindByIdProjectRepository,
     FindByIdsProjectRepository,
-    UpdateProjectRepository
+    UpdateProjectRepository,
+    CountProjectRepository
 {
   async create(
     params: CreateProjectRepository.Params
@@ -31,17 +33,29 @@ export class ProjectRepository
     }
   }
 
-  async findAll(): Promise<FindAllProjectRepository.Result> {
+  async findAll(
+    params: FindAllProjectRepository.Params
+  ): Promise<FindAllProjectRepository.Result> {
     const projectRepository = AppDataSource.getRepository(Project)
 
-    const projects = await projectRepository.findBy({ active: true })
+    const { page = 1, perPage = 10 } = params
 
-    return projects.map((project) => {
+    const [data, total] = await projectRepository.findAndCount({
+      where: {
+        active: true,
+      },
+      take: perPage,
+      skip: perPage * page - perPage,
+    })
+
+    const projects = data.map((project) => {
       return {
         ...project,
         daysOfWork: JSON.parse(project.daysOfWork) as Array<string>,
       }
     })
+
+    return { projects, total }
   }
 
   async findById(
@@ -85,5 +99,11 @@ export class ProjectRepository
       daysOfWork: JSON.stringify(data.newData.daysOfWork),
     })
     return true
+  }
+
+  async count(): Promise<CountProjectRepository.Result> {
+    const projectRepository = AppDataSource.getRepository(Project)
+
+    return projectRepository.count()
   }
 }

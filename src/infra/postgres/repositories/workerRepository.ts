@@ -1,4 +1,6 @@
+import { WorkerModel } from '@/domain/models'
 import { FindWorkerLoginRepository } from '@/domain/repositories/authentication/findWorkerLoginRepository'
+import { CountWorkerRepository } from '@/domain/repositories/worker/countWorkerRepository'
 import { CreateWorkerRepository } from '@/domain/repositories/worker/createWorkerRepository'
 import { DeleteWorkerRepository } from '@/domain/repositories/worker/deleteWorkerRepository'
 import { FindAllWorkerRepository } from '@/domain/repositories/worker/findAllWorkerRepository'
@@ -20,7 +22,8 @@ export class WorkerRepository
     FindByIdWorkerRepository,
     UpdateWorkerRepository,
     FindWorkerLoginRepository,
-    DeleteWorkerRepository
+    DeleteWorkerRepository,
+    CountWorkerRepository
 {
   async create(
     params: CreateWorkerRepository.Params
@@ -76,19 +79,25 @@ export class WorkerRepository
     }
   }
 
-  async findAll(): Promise<FindAllWorkerRepository.Result> {
+  async findAll(
+    params: FindAllWorkerRepository.Params
+  ): Promise<FindAllWorkerRepository.Result> {
     const workerRepository = AppDataSource.getRepository(Worker)
 
-    const workers = await workerRepository.find({
+    const { page = 1, perPage = 10 } = params
+
+    const [data, total] = await workerRepository.findAndCount({
       where: {
         active: true,
       },
       relations: {
         projects: true,
       },
+      take: perPage,
+      skip: perPage * page - perPage,
     })
 
-    return workers.map((worker) => {
+    const workers: Array<WorkerModel> = data.map((worker) => {
       return {
         ...worker,
         projects: worker.projects.map((project) => {
@@ -96,6 +105,8 @@ export class WorkerRepository
         }),
       }
     })
+
+    return { workers, total }
   }
 
   async findById(
@@ -155,5 +166,11 @@ export class WorkerRepository
     await workerRepository.delete(id)
 
     return true
+  }
+
+  async count(): Promise<CountWorkerRepository.Result> {
+    const workerRepository = AppDataSource.getRepository(Worker)
+
+    return workerRepository.count()
   }
 }

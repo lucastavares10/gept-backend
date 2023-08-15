@@ -6,7 +6,7 @@ export class FindAllProjectUseCase implements FindAllProject {
     private readonly findAllProjectRepository: FindAllProjectRepository
   ) {}
 
-  async execute(): Promise<FindAllProjectRepository.Result> {
-    return this.findAllProjectRepository.findAll()
+  async execute(params: FindAllProject.Params): Promise<FindAllProject.Result> {
+    return this.findAllProjectRepository.findAll(params)
   }
 }

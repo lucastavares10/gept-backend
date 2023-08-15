@@ -6,7 +6,7 @@ export class FindAllFamilyUseCase implements FindAllFamily {
     private readonly findAllFamilyRepository: FindAllFamilyRepository
   ) {}
 
-  async execute(): Promise<FindAllFamilyRepository.Result> {
-    return this.findAllFamilyRepository.findAll()
+  async execute(params: FindAllFamily.Params): Promise<FindAllFamily.Result> {
+    return this.findAllFamilyRepository.findAll(params)
   }
 }

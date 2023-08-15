@@ -1,9 +1,12 @@
 import { ProjectModel } from '@/domain/models'
 
 export interface FindAllProjectRepository {
-  findAll(): Promise<FindAllProjectRepository.Result>
+  findAll(
+    params: FindAllProjectRepository.Params
+  ): Promise<FindAllProjectRepository.Result>
 }
 
 export namespace FindAllProjectRepository {
-  export type Result = Array<ProjectModel>
+  export type Params = { page: number; perPage: number }
+  export type Result = { projects: Array<ProjectModel>; total: number }
 }

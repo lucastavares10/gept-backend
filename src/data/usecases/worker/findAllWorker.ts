@@ -6,7 +6,7 @@ export class FindAllWorkerUseCase implements FindAllWorker {
     private readonly findAllWorkerRepository: FindAllWorkerRepository
   ) {}
 
-  async execute(): Promise<FindAllWorkerRepository.Result> {
-    return this.findAllWorkerRepository.findAll()
+  async execute(params: FindAllWorker.Params): Promise<FindAllWorker.Result> {
+    return this.findAllWorkerRepository.findAll(params)
   }
 }

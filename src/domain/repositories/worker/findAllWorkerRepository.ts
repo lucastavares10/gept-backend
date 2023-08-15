@@ -1,9 +1,12 @@
 import { WorkerModel } from '@/domain/models'
 
 export interface FindAllWorkerRepository {
-  findAll(): Promise<FindAllWorkerRepository.Result>
+  findAll(
+    params: FindAllWorkerRepository.Params
+  ): Promise<FindAllWorkerRepository.Result>
 }
 
 export namespace FindAllWorkerRepository {
-  export type Result = Array<WorkerModel>
+  export type Params = { page: number; perPage: number }
+  export type Result = { workers: Array<WorkerModel>; total: number }
 }

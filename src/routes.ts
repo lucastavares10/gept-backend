@@ -1,10 +1,13 @@
-import { Router, Response, Request, NextFunction } from 'express'
+import { Router, Response, Request } from 'express'
 
 import { authentication } from './presentation/middlewares/authentication/authMiddleware'
 import applicationOptions from './config/application'
 
 //Login
 import { loginControllerFactory } from '@/main/factories/authentication/loginControllerFactory'
+
+//Login
+import { dashboardControllerFactory } from '@/main/factories/dashboard/dashboardControllerFactory'
 
 //Workers
 import { createWorkerControllerFactory } from '@/main/factories/worker/createWorkerControllerFactory'
@@ -34,6 +37,10 @@ router.get('/health', (_, res: Response) =>
 
 router.post('/login', (req: Request, res: Response) => {
   loginControllerFactory().handle(req, res)
+})
+
+router.get('/dashboard', authentication, (req: Request, res: Response) => {
+  dashboardControllerFactory().handle(req, res)
 })
 
 //Workers
