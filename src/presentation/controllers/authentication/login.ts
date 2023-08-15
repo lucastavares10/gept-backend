@@ -44,6 +44,7 @@ export class LoginController implements Controller {
         email: worker.email,
         accessLevel: worker.accessLevel,
         position: worker.position,
+        phone: worker.phone,
       }
 
       const token = await this.createToken.execute(loginData)

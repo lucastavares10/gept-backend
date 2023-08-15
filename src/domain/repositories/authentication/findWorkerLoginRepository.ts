@@ -1,5 +1,3 @@
-import { WorkerModel } from '@/domain/models'
-
 export interface FindWorkerLoginRepository {
   findWorkerLogin(email: string): Promise<FindWorkerLoginRepository.Result>
 }
@@ -13,5 +11,6 @@ export namespace FindWorkerLoginRepository {
     password: string
     accessLevel: string
     position: string
+    phone: string
   } | null
 }

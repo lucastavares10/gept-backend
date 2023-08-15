@@ -53,7 +53,15 @@ export class WorkerRepository
     const workerRepository = AppDataSource.getRepository(Worker)
 
     return workerRepository.findOne({
-      select: ['id', 'name', 'email', 'password', 'accessLevel', 'position'],
+      select: [
+        'id',
+        'name',
+        'email',
+        'password',
+        'accessLevel',
+        'position',
+        'phone',
+      ],
       where: {
         email,
       },
