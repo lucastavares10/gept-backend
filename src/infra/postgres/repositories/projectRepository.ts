@@ -41,9 +41,6 @@ export class ProjectRepository
     const { page = 1, perPage = 10 } = params
 
     const [data, total] = await projectRepository.findAndCount({
-      where: {
-        active: true,
-      },
       take: perPage,
       skip: perPage * page - perPage,
     })

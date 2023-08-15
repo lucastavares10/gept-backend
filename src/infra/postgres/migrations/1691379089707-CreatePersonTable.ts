@@ -26,7 +26,6 @@ export class CreatePersonTable1691379089707 implements MigrationInterface {
             name: 'email',
             type: 'varchar',
             length: '70',
-            isUnique: true,
           },
           {
             name: 'document',

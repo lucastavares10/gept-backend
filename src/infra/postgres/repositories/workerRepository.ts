@@ -76,15 +76,17 @@ export class WorkerRepository
     const worker = await workerRepository.findOneBy({ email })
 
     if (worker) {
+      const projects = worker.projects?.map((project) => {
+        return projectEntityToModel(project)
+      })
+
       return {
         ...worker,
-        projects: worker.projects.map((project) => {
-          return projectEntityToModel(project)
-        }),
+        projects: projects || [],
       }
-    } else {
-      return null
     }
+
+    return null
   }
 
   async findAll(
@@ -95,9 +97,6 @@ export class WorkerRepository
     const { page = 1, perPage = 10 } = params
 
     const [data, total] = await workerRepository.findAndCount({
-      where: {
-        active: true,
-      },
       relations: {
         projects: true,
       },
@@ -132,15 +131,17 @@ export class WorkerRepository
     })
 
     if (worker) {
+      const projects = worker.projects?.map((project) => {
+        return projectEntityToModel(project)
+      })
+
       return {
         ...worker,
-        projects: worker.projects.map((project) => {
-          return projectEntityToModel(project)
-        }),
+        projects: projects || [],
       }
-    } else {
-      return null
     }
+
+    return null
   }
 
   async update(

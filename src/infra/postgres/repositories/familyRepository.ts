@@ -7,7 +7,6 @@ import { FindByIdFamilyRepository } from '@/domain/repositories/family/findByIdF
 import { UpdateFamilyRepository } from '@/domain/repositories/family/updateFamilyRepository'
 import { AppDataSource } from '@/loaders'
 import { Family } from '../entities/Family'
-import { Person } from '../entities/Person'
 import { personEntityToModel, personModelToEntity } from './converters/person'
 import {
   projectEntityToModel,
