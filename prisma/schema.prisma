@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model family {
+  id             String           @id(map: "PK_ba386a5a59c3de8593cda4e5626") @default(dbgenerated("uuid_generate_v4()")) @db.VarChar
+  street         String           @db.VarChar(70)
+  number         String           @db.VarChar(10)
+  neighborhood   String           @db.VarChar(30)
+  complement     String           @db.VarChar(100)
+  isRented       Boolean          @map("is_rented")
+  rentPrice      Decimal          @map("rent_price") @db.Decimal
+  createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  person         person[]
+  project_family project_family[]
+}
+
+model migrations {
+  id        Int    @id(map: "PK_8c82d7f526340ab734260ea46be") @default(autoincrement())
+  timestamp BigInt
+  name      String @db.VarChar
+}
+
+model person {
+  id          String   @default(dbgenerated("uuid_generate_v4()")) @db.VarChar
+  name        String   @db.VarChar(70)
+  isOwner     Boolean  @map("is_owner")
+  email       String   @db.VarChar(70)
+  document    String   @db.VarChar(25)
+  kin         String   @db.VarChar(25)
+  occupation  String   @db.VarChar(30)
+  wage        Decimal  @db.Decimal
+  wageSources String   @map("wage_sources") @db.VarChar(70)
+  nis         String   @db.VarChar(25)
+  schooling   String   @db.VarChar(30)
+  birthdate   DateTime @db.Timestamp(6)
+  phone       String   @db.VarChar(30)
+  isWhatsapp  Boolean  @map("is_whatsapp")
+  phone2      String?  @map("phone_2") @db.VarChar(30)
+  isWhatsapp2 Boolean? @map("is_whatsapp_2")
+  family_id   String   @db.VarChar
+  family      family   @relation(fields: [family_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_79416f3fa7ca40ca48eaab66242")
+
+  @@id([id, family_id], map: "PK_4f2a2be2f43c297850e3c4c2c3f")
+}
+
+model project {
+  id             String           @id(map: "PK_4d68b1358bb5b766d3e78f32f57") @default(dbgenerated("uuid_generate_v4()")) @db.VarChar
+  name           String           @db.VarChar(70)
+  description    String
+  daysOfWork     String           @map("days_of_work") @db.VarChar(100)
+  createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  active         Boolean          @default(true)
+  project_family project_family[]
+  project_worker project_worker[]
+}
+
+model project_family {
+  project_id String  @db.VarChar
+  family_id  String  @db.VarChar
+  project    project @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_26e4b934cd53af738788e33a838")
+  family     family  @relation(fields: [family_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_e405d9f801db716230b9cc64370")
+
+  @@id([project_id, family_id], map: "PK_c5f9fef200c43518decf2516be2")
+}
+
+model project_worker {
+  project_id String  @db.VarChar
+  worker_id  String  @db.VarChar
+  project    project @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_5567dea09a83e5424293ba7876d")
+  worker     worker  @relation(fields: [worker_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_55955d1b8f98d65ec5c939c4051")
+
+  @@id([project_id, worker_id], map: "PK_c559dd6bdda866ce70d3255bc75")
+}
+
+model worker {
+  id             String           @id(map: "PK_dc8175fa0e34ce7a39e4ec73b94") @default(dbgenerated("uuid_generate_v4()")) @db.VarChar
+  name           String           @db.VarChar(70)
+  email          String           @unique(map: "UQ_13679fa10b68bb29e4303ca1c91") @db.VarChar(70)
+  password       String           @db.VarChar
+  accessLevel    String           @map("access_level") @db.VarChar(20)
+  position       String           @db.VarChar(20)
+  phone          String           @db.VarChar(30)
+  isWhatsapp     Boolean          @map("is_whatsapp")
+  street         String           @db.VarChar
+  number         String           @db.VarChar(10)
+  birthdate      DateTime         @db.Timestamp(6)
+  neighborhood   String           @db.VarChar(30)
+  city           String           @db.VarChar(30)
+  complement     String?          @db.VarChar
+  postalCode     String           @map("postal_code") @db.VarChar
+  createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamp(6)
+  active         Boolean          @default(true)
+  project_worker project_worker[]
+}

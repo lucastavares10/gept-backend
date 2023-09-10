@@ -1,106 +1,73 @@
-<h1 align="center">
-  GEPT - BackEnd
-  <br>
-</h1>
-
 <p align="center">
-    <a alt="NPM">
-        <img src="https://img.shields.io/badge/npm-v6+-red.svg" />
-    </a>
-    <a alt="NodeJs">
-        <img src="https://img.shields.io/badge/NodeJs-v16+-greenlight.svg" />
-    </a>
-    <a alt="TypeScript">
-        <img src="https://img.shields.io/badge/TypeScript-v3.9-blue.svg" />
-    </a>
-    <a alt="TypeORM">
-        <img src="https://img.shields.io/badge/TypeORM-v0.3-brown.svg">
-    </a>
-        <a alt="Jest">
-        <img src="https://img.shields.io/badge/Jest-brown.svg">
-    </a>
-    <a alt="PostgreSQL">
-        <img src="https://img.shields.io/badge/PostgreSQL-blue.svg">
-    </a>
-    <a alt="ExpressJs">
-        <img src="https://img.shields.io/badge/ExpressJs-v4.17-greendark.svg">
-    </a>
-    <a alt="SocketIO">
-        <img src="https://img.shields.io/badge/SocketIO-v4-bluedark.svg" />
-    </a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-## Índice
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-1. [Descrição do projeto](#Descrição-projeto)
-2. [Diagrama de entidade e relacionamento](#Diagrama-ERD)
-3. [Tecnologias](#Tecnologias)
-4. [Design Patterns e Metodologias](#Design-patterns)
-5. [Metodologias](#Metodologias)
-6. [Instruções de uso](#Instruções-de-uso)
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Descrição do projeto
+## Description
 
-...
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Diagrama de entidade e relacionamento
-
-  <img src="./.github/images/GEPT - ERD.png" alt="Diagrama-ERD">
-
-## Tecnologias
-
-Principais ferramentas e tecnologias utilizadas no projeto:
-
-- **npm** - Gerenciador de dependências
-- **TypeScript** - Linguagem de programação
-- **NodeJS** - Interpretador JavaScript/TypeScript
-- **ExpressJS** - Framework para API em NodeJS
-- **PostgreSQL** - Banco de dados relacional
-- **TypeORM** - ORM para Typescript
-- **Jest** - Framework para testes
-- **Docker** - Framework de conteinerização
-- **Yup** - Biblioteca de validação de esquemas
-- **ESLint** - Ferramenta de padronização de códigos
-- **Prettier** - Formatador de códigos
-
-## Design Patterns e Metodologias
-
-- **Clean Architecture**
-- **SOLID**
-- **Factory**
-- **Dependency Injection**
-- **Keep It Simple, Silly (KISS)**
-
-## Instruções de uso
-
-**1. Clonar repositório**
-
-**2. Build e start usando docker**
-
-- Serão criados dois containers, postgres-db e gept-backend
+## Installation
 
 ```bash
-docker-compose build
-docker-compose up -d
+$ npm install
 ```
 
-**3. Start usando npm**
-
-- Necessário uma conexão com o PostgreSQL, configurar no .env do projeto antes de executar
+## Running the app
 
 ```bash
-npm install
-npm start
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
 
-Aplicação estará disponível em <http://localhost:4000>.
-
-**4. Testes com Jest**
+## Test
 
 ```bash
-npm run test
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
 ```
 
-## Contribuidores
+## Support
 
-[Lucas Tavares](https://www.linkedin.com/in/lucas-tavares-a25323116/)
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+Nest is [MIT licensed](LICENSE).
