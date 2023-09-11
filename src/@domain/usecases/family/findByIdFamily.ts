@@ -1,9 +1,9 @@
-import { FamilyModel } from '@domain/models';
+import { FamilyEntity } from '@domain/entities/family.entity';
 
 export interface FindByIdFamily {
-  execute(id: string): Promise<FindByIdFamily.Result>;
+  execute(id: string): Promise<FindByIdFamilyResult>;
 }
 
-export namespace FindByIdFamily {
-  export type Result = FamilyModel | null;
+export class FindByIdFamilyResult {
+  family?: FamilyEntity;
 }

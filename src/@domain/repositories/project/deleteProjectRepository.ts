@@ -1,8 +1,13 @@
 export interface DeleteProjectRepository {
-  delete(id: string): Promise<DeleteProjectRepository.Result>;
+  delete(
+    params: DeleteProjectRepositoryParams,
+  ): Promise<DeleteProjectRepositoryResult>;
 }
 
-export namespace DeleteProjectRepository {
-  export type Params = string;
-  export type Result = boolean | null;
+export class DeleteProjectRepositoryParams {
+  id: string;
+}
+
+export class DeleteProjectRepositoryResult {
+  deleted?: boolean;
 }

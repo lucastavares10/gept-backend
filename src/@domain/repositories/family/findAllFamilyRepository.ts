@@ -1,12 +1,17 @@
-import { FamilyModel } from '@domain/models';
+import { FamilyEntity } from '@domain/entities/family.entity';
 
 export interface FindAllFamilyRepository {
   findAll(
-    params: FindAllFamilyRepository.Params,
-  ): Promise<FindAllFamilyRepository.Result>;
+    params: FindAllFamilyRepositoryParams,
+  ): Promise<FindAllFamilyRepositoryResult>;
 }
 
-export namespace FindAllFamilyRepository {
-  export type Params = { page: number; perPage: number };
-  export type Result = { families: Array<FamilyModel>; total: number };
+export class FindAllFamilyRepositoryParams {
+  page: number;
+  perPage: number;
+}
+
+export class FindAllFamilyRepositoryResult {
+  families: Array<FamilyEntity>;
+  total: number;
 }

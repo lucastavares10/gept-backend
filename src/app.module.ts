@@ -4,22 +4,23 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-//configuration files
-import application from '@config/application.config';
-import security from '@config/security.config';
-
-//modules
+//infra modules
 import { InfraModule } from '@infra/infra.module';
+
+//api modules
 import { AuthenticationModule } from './authentication/authentication.module';
+import { WorkerModule } from './worker/worker.module';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [application, security],
       isGlobal: true,
     }),
     InfraModule,
     AuthenticationModule,
+    WorkerModule,
+    ProjectModule,
   ],
   controllers: [AppController],
   providers: [AppService],

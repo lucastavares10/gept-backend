@@ -1,15 +1,16 @@
 export interface UpdateProject {
-  execute(data: UpdateProject.Params): Promise<UpdateProject.Result>;
+  execute(data: UpdateProjectParams): Promise<UpdateProjectResult>;
 }
 
-export namespace UpdateProject {
-  export type Params = {
-    id: string;
-    newData: {
-      name: string;
-      active: boolean;
-      daysOfWork: Array<string>;
-    };
+export class UpdateProjectParams {
+  id: string;
+  newData: {
+    name?: string;
+    active?: boolean;
+    description?: string;
+    daysOfWork?: Array<string>;
   };
-  export type Result = boolean;
+}
+export class UpdateProjectResult {
+  updated: boolean;
 }

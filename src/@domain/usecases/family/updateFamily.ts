@@ -1,22 +1,22 @@
-import { PersonModel } from '@domain/models';
+import { PersonEntity } from '@domain/entities/person.entity';
 
 export interface UpdateFamily {
-  execute(data: UpdateFamily.Params): Promise<UpdateFamily.Result>;
+  execute(data: UpdateFamilyParams): Promise<UpdateFamilyResult>;
 }
 
-export namespace UpdateFamily {
-  export type Params = {
-    id: string;
-    newData: {
-      street: string;
-      number: string;
-      neighborhood: string;
-      complement: string;
-      isRented: boolean;
-      rentPrice: number;
-      persons: Array<PersonModel>;
-      projects: Array<string>;
-    };
+export class UpdateFamilyParams {
+  id: string;
+  newData: {
+    street: string;
+    number: string;
+    neighborhood: string;
+    complement: string;
+    isRented: boolean;
+    rentPrice: number;
+    persons: Array<PersonEntity>;
+    projects: Array<string>;
   };
-  export type Result = boolean;
+}
+export class UpdateFamilyResult {
+  updated: boolean;
 }

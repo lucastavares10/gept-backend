@@ -1,9 +1,9 @@
-import { WorkerModel } from '@domain/models';
+import { WorkerEntity } from '@domain/entities/worker.entity';
 
 export interface FindByIdWorker {
-  execute(id: string): Promise<FindByIdWorker.Result>;
+  execute(id: string): Promise<FindByIdWorkerResult>;
 }
 
-export namespace FindByIdWorker {
-  export type Result = WorkerModel | null;
+export class FindByIdWorkerResult {
+  worker: WorkerEntity | null;
 }

@@ -1,10 +1,13 @@
-import { WorkerModel } from '@domain/models';
+import { WorkerEntity } from '@domain/entities/worker.entity';
 
 export interface FindByEmailWorkerRepository {
-  findByEmail(email: string): Promise<FindByEmailWorkerRepository.Result>;
+  findByEmail(
+    params: FindByEmailWorkerRepositoryParams,
+  ): Promise<FindByEmailWorkerRepositoryResult>;
 }
 
-export namespace FindByEmailWorkerRepository {
-  export type Params = string;
-  export type Result = WorkerModel | null;
+export class FindByEmailWorkerRepositoryParams {
+  email: string;
 }
+
+export class FindByEmailWorkerRepositoryResult extends WorkerEntity {}

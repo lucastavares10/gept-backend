@@ -1,18 +1,19 @@
 export interface UpdateProjectRepository {
   update(
-    params: UpdateProjectRepository.Params,
-  ): Promise<UpdateProjectRepository.Result>;
+    params: UpdateProjectRepositoryParams,
+  ): Promise<UpdateProjectRepositoryResult>;
 }
 
-export namespace UpdateProjectRepository {
-  export type Params = {
-    id: string;
-    newData: {
-      name: string;
-      description: string;
-      active: boolean;
-      daysOfWork: Array<string>;
-    };
+export class UpdateProjectRepositoryParams {
+  id: string;
+  newData: {
+    name: string;
+    description: string;
+    active: boolean;
+    daysOfWork: Array<string>;
   };
-  export type Result = boolean;
+}
+
+export class UpdateProjectRepositoryResult {
+  updated: boolean;
 }

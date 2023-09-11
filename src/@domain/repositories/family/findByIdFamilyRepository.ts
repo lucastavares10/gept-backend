@@ -1,10 +1,13 @@
-import { FamilyModel } from '@domain/models';
+import { FamilyEntity } from '@domain/entities/family.entity';
 
 export interface FindByIdFamilyRepository {
-  findById(id: string): Promise<FindByIdFamilyRepository.Result>;
+  findById(
+    params: FindByIdFamilyRepositoryParams,
+  ): Promise<FindByIdFamilyRepositoryResult>;
 }
 
-export namespace FindByIdFamilyRepository {
-  export type Params = string;
-  export type Result = FamilyModel | null;
+export class FindByIdFamilyRepositoryParams {
+  id: string;
 }
+
+export class FindByIdFamilyRepositoryResult extends FamilyEntity {}

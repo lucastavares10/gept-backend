@@ -1,10 +1,14 @@
-import { ProjectModel } from '@domain/models';
+import { ProjectEntity } from '@domain/entities/project.entity';
 
 export interface FindAllProject {
-  execute(params: FindAllProject.Params): Promise<FindAllProject.Result>;
+  execute(params: FindAllProjectParams): Promise<FindAllProjectResult>;
 }
 
-export namespace FindAllProject {
-  export type Params = { page: number; perPage: number };
-  export type Result = { projects: Array<ProjectModel>; total: number };
+export class FindAllProjectParams {
+  page: number;
+  perPage: number;
+}
+export class FindAllProjectResult {
+  projects: Array<ProjectEntity>;
+  total: number;
 }

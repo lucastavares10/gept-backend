@@ -1,8 +1,12 @@
 export interface DeleteFamilyRepository {
-  delete(id: string): Promise<DeleteFamilyRepository.Result>;
+  delete(
+    params: DeleteFamilyRepositoryParams,
+  ): Promise<DeleteFamilyRepositoryResult>;
 }
 
-export namespace DeleteFamilyRepository {
-  export type Params = string;
-  export type Result = boolean | null;
+export class DeleteFamilyRepositoryParams {
+  id: string;
+}
+export class DeleteFamilyRepositoryResult {
+  deleted: boolean;
 }

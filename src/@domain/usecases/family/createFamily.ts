@@ -1,18 +1,20 @@
-import { FamilyModel, PersonModel } from '@domain/models';
+import { FamilyEntity } from '@domain/entities/family.entity';
+import { PersonEntity } from '@domain/entities/person.entity';
+
 export interface CreateFamily {
-  execute(data: CreateFamily.Params): Promise<CreateFamily.Result>;
+  execute(data: CreateFamilyParams): Promise<CreateFamilyResult>;
 }
 
-export namespace CreateFamily {
-  export type Params = {
-    street: string;
-    number: string;
-    neighborhood: string;
-    complement: string;
-    isRented: boolean;
-    rentPrice: number;
-    projects: Array<string>;
-    persons: Array<PersonModel>;
-  };
-  export type Result = FamilyModel | null;
+export class CreateFamilyParams {
+  street: string;
+  number: string;
+  neighborhood: string;
+  complement: string;
+  isRented: boolean;
+  rentPrice: number;
+  projects: Array<string>;
+  persons: Array<PersonEntity>;
+}
+export class CreateFamilyResult {
+  family?: FamilyEntity;
 }

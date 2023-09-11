@@ -1,21 +1,22 @@
-import { ProjectModel, FamilyModel, PersonModel } from '@domain/models';
+import { FamilyEntity } from '@domain/entities/family.entity';
+import { PersonEntity } from '@domain/entities/person.entity';
+import { ProjectEntity } from '@domain/entities/project.entity';
 
 export interface CreateFamilyRepository {
   create(
-    params: CreateFamilyRepository.Params,
-  ): Promise<CreateFamilyRepository.Result>;
+    params: CreateFamilyRepositoryParams,
+  ): Promise<CreateFamilyRepositoryResult>;
 }
 
-export namespace CreateFamilyRepository {
-  export type Params = {
-    street: string;
-    number: string;
-    neighborhood: string;
-    complement: string;
-    isRented: boolean;
-    rentPrice: number;
-    projects: Array<ProjectModel>;
-    persons: Array<PersonModel>;
-  };
-  export type Result = FamilyModel;
+export class CreateFamilyRepositoryParams {
+  street: string;
+  number: string;
+  neighborhood: string;
+  complement: string;
+  isRented: boolean;
+  rentPrice: number;
+  projects: Array<ProjectEntity>;
+  persons: Array<PersonEntity>;
 }
+
+export class CreateFamilyRepositoryResult extends FamilyEntity {}

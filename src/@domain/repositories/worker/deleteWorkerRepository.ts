@@ -1,8 +1,12 @@
 export interface DeleteWorkerRepository {
-  delete(id: string): Promise<DeleteWorkerRepository.Result>;
+  delete(
+    params: DeleteWorkerRepositoryParams,
+  ): Promise<DeleteWorkerRepositoryResult>;
 }
 
-export namespace DeleteWorkerRepository {
-  export type Params = string;
-  export type Result = boolean | null;
+export class DeleteWorkerRepositoryParams {
+  id: string;
+}
+export class DeleteWorkerRepositoryResult {
+  deleted?: boolean;
 }

@@ -1,10 +1,15 @@
-import { ProjectModel } from '@domain/models';
+import { ProjectEntity } from '@domain/entities/project.entity';
 
 export interface FindByIdsProjectRepository {
-  findByIds(ids: Array<string>): Promise<FindByIdsProjectRepository.Result>;
+  findByIds(
+    params: FindByIdsProjectRepositoryParams,
+  ): Promise<FindByIdsProjectRepositoryResult>;
 }
 
-export namespace FindByIdsProjectRepository {
-  export type Params = Array<string>;
-  export type Result = Array<ProjectModel> | null;
+export class FindByIdsProjectRepositoryParams {
+  ids: Array<string>;
+}
+
+export class FindByIdsProjectRepositoryResult {
+  projects?: Array<ProjectEntity>;
 }

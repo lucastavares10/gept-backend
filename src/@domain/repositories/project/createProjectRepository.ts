@@ -1,17 +1,15 @@
-import { ProjectModel } from '@domain/models';
+import { ProjectEntity } from '@domain/entities/project.entity';
 
 export interface CreateProjectRepository {
   create(
-    params: CreateProjectRepository.Params,
-  ): Promise<CreateProjectRepository.Result>;
+    params: CreateProjectRepositoryParams,
+  ): Promise<CreateProjectRepositoryResult>;
 }
 
-export namespace CreateProjectRepository {
-  export type Params = {
-    name: string;
-    description: string;
-    active: boolean;
-    daysOfWork: Array<string>;
-  };
-  export type Result = ProjectModel;
+export class CreateProjectRepositoryParams {
+  name: string;
+  description: string;
+  active: boolean;
+  daysOfWork: Array<string>;
 }
+export class CreateProjectRepositoryResult extends ProjectEntity {}

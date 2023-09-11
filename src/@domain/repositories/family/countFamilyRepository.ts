@@ -1,7 +1,7 @@
 export interface CountFamilyRepository {
-  count(): Promise<CountFamilyRepository.Result>;
+  count(): Promise<CountFamilyRepositoryResult>;
 }
 
-export namespace CountFamilyRepository {
-  export type Result = number;
+export class CountFamilyRepositoryResult {
+  count: number;
 }

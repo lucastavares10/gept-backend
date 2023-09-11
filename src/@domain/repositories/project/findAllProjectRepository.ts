@@ -1,12 +1,17 @@
-import { ProjectModel } from '@domain/models';
+import { ProjectEntity } from '@domain/entities/project.entity';
 
 export interface FindAllProjectRepository {
   findAll(
-    params: FindAllProjectRepository.Params,
-  ): Promise<FindAllProjectRepository.Result>;
+    params: FindAllProjectRepositoryParams,
+  ): Promise<FindAllProjectRepositoryResult>;
 }
 
-export namespace FindAllProjectRepository {
-  export type Params = { page: number; perPage: number };
-  export type Result = { projects: Array<ProjectModel>; total: number };
+export class FindAllProjectRepositoryParams {
+  page: number;
+  perPage: number;
+}
+
+export class FindAllProjectRepositoryResult {
+  projects: Array<ProjectEntity>;
+  total: number;
 }

@@ -1,12 +1,17 @@
-import { WorkerModel } from '@domain/models';
+import { WorkerEntity } from '@domain/entities/worker.entity';
 
 export interface FindAllWorkerRepository {
   findAll(
-    params: FindAllWorkerRepository.Params,
-  ): Promise<FindAllWorkerRepository.Result>;
+    params: FindAllWorkerRepositoryParams,
+  ): Promise<FindAllWorkerRepositoryResult>;
 }
 
-export namespace FindAllWorkerRepository {
-  export type Params = { page: number; perPage: number };
-  export type Result = { workers: Array<WorkerModel>; total: number };
+export class FindAllWorkerRepositoryParams {
+  page: number;
+  perPage: number;
+}
+
+export class FindAllWorkerRepositoryResult {
+  workers: Array<WorkerEntity>;
+  total: number;
 }

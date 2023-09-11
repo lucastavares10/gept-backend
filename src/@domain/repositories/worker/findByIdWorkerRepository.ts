@@ -1,10 +1,12 @@
-import { WorkerModel } from '@domain/models';
+import { WorkerEntity } from '@domain/entities/worker.entity';
 
 export interface FindByIdWorkerRepository {
-  findById(id: string): Promise<FindByIdWorkerRepository.Result>;
+  findById(
+    params: FindByIdWorkerRepositoryParams,
+  ): Promise<FindByIdWorkerRepositoryResult>;
 }
 
-export namespace FindByIdWorkerRepository {
-  export type Params = string;
-  export type Result = WorkerModel | null;
+export class FindByIdWorkerRepositoryParams {
+  id: string;
 }
+export class FindByIdWorkerRepositoryResult extends WorkerEntity {}

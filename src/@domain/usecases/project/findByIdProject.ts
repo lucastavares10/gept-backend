@@ -1,9 +1,11 @@
-import { ProjectModel } from '@domain/models';
+import { ProjectEntity } from '@domain/entities/project.entity';
 
 export interface FindByIdProject {
-  execute(id: string): Promise<FindByIdProject.Result>;
+  execute(params: FindByIdProjectParams): Promise<FindByIdProjectResult>;
 }
 
-export namespace FindByIdProject {
-  export type Result = ProjectModel | null;
+export class FindByIdProjectParams {
+  id: string;
 }
+
+export class FindByIdProjectResult extends ProjectEntity {}

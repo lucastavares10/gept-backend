@@ -1,5 +1,5 @@
 export interface Login {
-  execute(data: LoginParams): Promise<LoginResult>;
+  execute(params: LoginParams): Promise<LoginResult>;
 }
 
 export class LoginParams {

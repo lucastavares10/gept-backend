@@ -1,7 +1,7 @@
 export interface CountWorkerRepository {
-  count(): Promise<CountWorkerRepository.Result>;
+  count(): Promise<CountWorkerRepositoryResult>;
 }
 
-export namespace CountWorkerRepository {
-  export type Result = number;
+export class CountWorkerRepositoryResult {
+  count: number;
 }
