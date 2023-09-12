@@ -1,9 +1,11 @@
 import { WorkerEntity } from '@domain/entities/worker.entity';
 
 export interface FindByIdWorker {
-  execute(id: string): Promise<FindByIdWorkerResult>;
+  execute(params: FindByIdWorkerParams): Promise<FindByIdWorkerResult>;
 }
 
-export class FindByIdWorkerResult {
-  worker: WorkerEntity | null;
+export class FindByIdWorkerParams {
+  id: string;
 }
+
+export class FindByIdWorkerResult extends WorkerEntity {}

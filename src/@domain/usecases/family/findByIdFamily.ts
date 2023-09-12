@@ -1,9 +1,11 @@
 import { FamilyEntity } from '@domain/entities/family.entity';
 
 export interface FindByIdFamily {
-  execute(id: string): Promise<FindByIdFamilyResult>;
+  execute(params: FindByIdFamilyParams): Promise<FindByIdFamilyResult>;
 }
 
-export class FindByIdFamilyResult {
-  family?: FamilyEntity;
+export class FindByIdFamilyParams {
+  id: string;
 }
+
+export class FindByIdFamilyResult extends FamilyEntity {}

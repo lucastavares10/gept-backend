@@ -2,9 +2,7 @@ import { PersonEntity } from '@domain/entities/person.entity';
 import { ProjectEntity } from '@domain/entities/project.entity';
 
 export interface UpdateFamilyRepository {
-  update(
-    params: UpdateFamilyRepositoryParams,
-  ): Promise<UpdateFamilyRepositoryResult>;
+  update(params: UpdateFamilyRepositoryParams): Promise<void>;
 }
 
 export class UpdateFamilyRepositoryParams {
@@ -19,8 +17,4 @@ export class UpdateFamilyRepositoryParams {
     projects: Array<ProjectEntity>;
     persons: Array<PersonEntity>;
   };
-}
-
-export class UpdateFamilyRepositoryResult {
-  updated?: boolean;
 }

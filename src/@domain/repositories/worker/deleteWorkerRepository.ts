@@ -1,12 +1,7 @@
 export interface DeleteWorkerRepository {
-  delete(
-    params: DeleteWorkerRepositoryParams,
-  ): Promise<DeleteWorkerRepositoryResult>;
+  delete(params: DeleteWorkerRepositoryParams): Promise<void>;
 }
 
 export class DeleteWorkerRepositoryParams {
   id: string;
-}
-export class DeleteWorkerRepositoryResult {
-  deleted?: boolean;
 }

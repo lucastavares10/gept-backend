@@ -15,6 +15,5 @@ export class CreateFamilyParams {
   projects: Array<string>;
   persons: Array<PersonEntity>;
 }
-export class CreateFamilyResult {
-  family?: FamilyEntity;
-}
+
+export class CreateFamilyResult extends FamilyEntity {}

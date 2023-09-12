@@ -11,5 +11,5 @@ export class FindByIdsProjectRepositoryParams {
 }
 
 export class FindByIdsProjectRepositoryResult {
-  projects?: Array<ProjectEntity>;
+  projects: Array<ProjectEntity>;
 }

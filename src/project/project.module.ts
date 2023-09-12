@@ -9,6 +9,8 @@ import { CreateProjectRepository } from '@domain/repositories/project/createProj
 import { FindByIdProjectRepository } from '@domain/repositories/project/findByIdProjectRepository';
 import { UpdateProjectRepository } from '@domain/repositories/project/updateProjectRepository';
 import { FindAllProjectRepository } from '@domain/repositories/project/findAllProjectRepository';
+import { DeleteProjectRepository } from '@domain/repositories/project/deleteProjectRepository';
+import { DeleteProjectUseCase } from '@data/usecases/project/delete-project.usecase';
 
 @Module({
   controllers: [ProjectController],
@@ -44,6 +46,13 @@ import { FindAllProjectRepository } from '@domain/repositories/project/findAllPr
       provide: FindByIdProjectUseCase,
       useFactory: (projectRepository: FindByIdProjectRepository) => {
         return new FindByIdProjectUseCase(projectRepository);
+      },
+      inject: [ProjectRepository],
+    },
+    {
+      provide: DeleteProjectUseCase,
+      useFactory: (projectRepository: DeleteProjectRepository) => {
+        return new DeleteProjectUseCase(projectRepository);
       },
       inject: [ProjectRepository],
     },

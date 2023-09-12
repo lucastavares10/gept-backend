@@ -22,7 +22,7 @@ export class LoginUseCase implements Login {
 
     if (!worker) throw new BadRequestException('Email ou senha incorretos');
 
-    const isValidPassword = await this.validatePassword.execute({
+    const isValidPassword = await this.validatePassword.validate({
       password: loginData.password,
       hash: worker.password,
     });

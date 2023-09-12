@@ -10,7 +10,6 @@ import {
 import {
   DeleteProjectRepository,
   DeleteProjectRepositoryParams,
-  DeleteProjectRepositoryResult,
 } from '@domain/repositories/project/deleteProjectRepository';
 import {
   FindAllProjectRepository,
@@ -30,7 +29,6 @@ import {
 import {
   UpdateProjectRepository,
   UpdateProjectRepositoryParams,
-  UpdateProjectRepositoryResult,
 } from '@domain/repositories/project/updateProjectRepository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
@@ -101,10 +99,10 @@ export class ProjectRepository
   }
 
   async findByIds(
-    ids: FindByIdsProjectRepositoryParams,
+    params: FindByIdsProjectRepositoryParams,
   ): Promise<FindByIdsProjectRepositoryResult> {
-    if (ids && Array.isArray(ids)) {
-      const data = await this.projectRepository.findBy({ id: In(ids) });
+    if (params && Array.isArray(params.ids)) {
+      const data = await this.projectRepository.findBy({ id: In(params.ids) });
 
       const projects = data?.map((project) => {
         return {
@@ -116,26 +114,18 @@ export class ProjectRepository
       return { projects };
     }
 
-    return;
+    return { projects: [] };
   }
 
-  async update(
-    data: UpdateProjectRepositoryParams,
-  ): Promise<UpdateProjectRepositoryResult> {
+  async update(data: UpdateProjectRepositoryParams): Promise<void> {
     await this.projectRepository.update(data.id, {
       ...data.newData,
       daysOfWork: JSON.stringify(data.newData.daysOfWork),
     });
-
-    return { updated: true };
   }
 
-  async delete(
-    id: DeleteProjectRepositoryParams,
-  ): Promise<DeleteProjectRepositoryResult> {
+  async delete(id: DeleteProjectRepositoryParams): Promise<void> {
     await this.projectRepository.delete(id);
-
-    return { deleted: true };
   }
 
   async count(): Promise<CountProjectRepositoryResult> {

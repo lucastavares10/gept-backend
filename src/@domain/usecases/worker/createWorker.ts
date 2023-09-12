@@ -21,6 +21,5 @@ export class CreateWorkerParams {
   postalCode: string;
   projects: Array<string>;
 }
-export class CreateWorkerResult {
-  worker: WorkerEntity | null;
-}
+
+export class CreateWorkerResult extends WorkerEntity {}

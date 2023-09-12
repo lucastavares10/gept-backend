@@ -1,12 +1,7 @@
 export interface DeleteFamilyRepository {
-  delete(
-    params: DeleteFamilyRepositoryParams,
-  ): Promise<DeleteFamilyRepositoryResult>;
+  delete(params: DeleteFamilyRepositoryParams): Promise<void>;
 }
 
 export class DeleteFamilyRepositoryParams {
   id: string;
-}
-export class DeleteFamilyRepositoryResult {
-  deleted: boolean;
 }

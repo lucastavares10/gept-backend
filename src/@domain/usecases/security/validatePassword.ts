@@ -1,5 +1,5 @@
 export interface ValidatePassword {
-  execute(data: ValidatePasswordParams): Promise<ValidatePasswordResult>;
+  validate(data: ValidatePasswordParams): Promise<ValidatePasswordResult>;
 }
 
 export class ValidatePasswordParams {

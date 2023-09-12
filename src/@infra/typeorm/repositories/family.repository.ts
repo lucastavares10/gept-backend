@@ -10,7 +10,6 @@ import {
 import {
   DeleteFamilyRepository,
   DeleteFamilyRepositoryParams,
-  DeleteFamilyRepositoryResult,
 } from '@domain/repositories/family/deleteFamilyRepository';
 import {
   FindAllFamilyRepository,
@@ -25,7 +24,6 @@ import {
 import {
   UpdateFamilyRepository,
   UpdateFamilyRepositoryParams,
-  UpdateFamilyRepositoryResult,
 } from '@domain/repositories/family/updateFamilyRepository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -138,9 +136,7 @@ export class FamilyRepository
     }
   }
 
-  async update(
-    data: UpdateFamilyRepositoryParams,
-  ): Promise<UpdateFamilyRepositoryResult> {
+  async update(data: UpdateFamilyRepositoryParams): Promise<void> {
     const family = await this.familyRepository.findOne({
       where: { id: data.id },
       relations: { projects: true, persons: true },
@@ -158,16 +154,10 @@ export class FamilyRepository
     };
 
     await this.familyRepository.save(familyUpdated);
-
-    return { updated: true };
   }
 
-  async delete(
-    params: DeleteFamilyRepositoryParams,
-  ): Promise<DeleteFamilyRepositoryResult> {
+  async delete(params: DeleteFamilyRepositoryParams): Promise<void> {
     await this.familyRepository.delete({ id: params.id });
-
-    return { deleted: true };
   }
 
   async count(): Promise<CountFamilyRepositoryResult> {

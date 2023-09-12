@@ -1,9 +1,7 @@
 import { ProjectEntity } from '@domain/entities/project.entity';
 
 export interface UpdateWorkerRepository {
-  update(
-    params: UpdateWorkerRepositoryParams,
-  ): Promise<UpdateWorkerRepositoryResult>;
+  update(params: UpdateWorkerRepositoryParams): Promise<void>;
 }
 
 export class UpdateWorkerRepositoryParams {
@@ -26,8 +24,4 @@ export class UpdateWorkerRepositoryParams {
     active: boolean;
     projects: Array<ProjectEntity>;
   };
-}
-
-export class UpdateWorkerRepositoryResult {
-  updated: boolean;
 }

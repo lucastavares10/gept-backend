@@ -1,7 +1,6 @@
 import {
   UpdateProject,
   UpdateProjectParams,
-  UpdateProjectResult,
 } from '@domain/usecases/project/updateProject';
 import { UpdateProjectRepository } from '@domain/repositories/project/updateProjectRepository';
 import { FindByIdProjectRepository } from '@domain/repositories/project/findByIdProjectRepository';
@@ -13,7 +12,7 @@ export class UpdateProjectUseCase implements UpdateProject {
     private readonly findByIdProjectRepository: FindByIdProjectRepository,
   ) {}
 
-  async execute(params: UpdateProjectParams): Promise<UpdateProjectResult> {
+  async execute(params: UpdateProjectParams): Promise<void> {
     const project = await this.findByIdProjectRepository.findById({
       id: params.id,
     });
@@ -25,13 +24,11 @@ export class UpdateProjectUseCase implements UpdateProject {
       ...params.newData,
     };
 
-    const result = await this.updateProjectRepository.update({
+    return await this.updateProjectRepository.update({
       id: params.id,
       newData: {
         ...newProject,
       },
     });
-
-    return { updated: result.updated };
   }
 }

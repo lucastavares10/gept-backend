@@ -1,13 +1,7 @@
 export interface DeleteProjectRepository {
-  delete(
-    params: DeleteProjectRepositoryParams,
-  ): Promise<DeleteProjectRepositoryResult>;
+  delete(params: DeleteProjectRepositoryParams): Promise<void>;
 }
 
 export class DeleteProjectRepositoryParams {
   id: string;
-}
-
-export class DeleteProjectRepositoryResult {
-  deleted?: boolean;
 }

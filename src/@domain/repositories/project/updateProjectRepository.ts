@@ -1,7 +1,5 @@
 export interface UpdateProjectRepository {
-  update(
-    params: UpdateProjectRepositoryParams,
-  ): Promise<UpdateProjectRepositoryResult>;
+  update(params: UpdateProjectRepositoryParams): Promise<void>;
 }
 
 export class UpdateProjectRepositoryParams {
@@ -12,8 +10,4 @@ export class UpdateProjectRepositoryParams {
     active: boolean;
     daysOfWork: Array<string>;
   };
-}
-
-export class UpdateProjectRepositoryResult {
-  updated: boolean;
 }

@@ -15,7 +15,6 @@ import {
 import {
   DeleteWorkerRepository,
   DeleteWorkerRepositoryParams,
-  DeleteWorkerRepositoryResult,
 } from '@domain/repositories/worker/deleteWorkerRepository';
 import {
   FindAllWorkerRepository,
@@ -35,7 +34,6 @@ import {
 import {
   UpdateWorkerRepository,
   UpdateWorkerRepositoryParams,
-  UpdateWorkerRepositoryResult,
 } from '@domain/repositories/worker/updateWorkerRepository';
 import { WorkerSchema } from '@infra/typeorm/schemas/worker.schema';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -171,9 +169,7 @@ export class WorkerRepository
     return null;
   }
 
-  async update(
-    data: UpdateWorkerRepositoryParams,
-  ): Promise<UpdateWorkerRepositoryResult> {
+  async update(data: UpdateWorkerRepositoryParams): Promise<void> {
     const worker = await this.workerRepository.findOne({
       where: { id: data.id },
       relations: { projects: true },
@@ -188,16 +184,10 @@ export class WorkerRepository
     };
 
     await this.workerRepository.save(workerUpdated);
-
-    return { updated: true };
   }
 
-  async delete(
-    id: DeleteWorkerRepositoryParams,
-  ): Promise<DeleteWorkerRepositoryResult> {
+  async delete(id: DeleteWorkerRepositoryParams): Promise<void> {
     await this.workerRepository.delete(id);
-
-    return { deleted: true };
   }
 
   async count(): Promise<CountWorkerRepositoryResult> {
